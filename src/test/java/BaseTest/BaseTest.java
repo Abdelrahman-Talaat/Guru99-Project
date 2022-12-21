@@ -2,6 +2,7 @@ package BaseTest;
 
 import Pages.LoginPage;
 import com.google.common.io.Files;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.UnhandledAlertException;
@@ -24,7 +25,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void beforeMethod(){
-        System.setProperty("webdriver.chrome.driver","resources/chromedriver.exe");
+       WebDriverManager.chromedriver().setup();
         driver=new ChromeDriver();
         driver.manage().window().maximize();
         loginPage=new LoginPage(driver);
