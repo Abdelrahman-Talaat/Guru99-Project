@@ -12,11 +12,11 @@ public class CustomizedStatementTest extends BaseTest {
         loginPage.setPassword("123457@");
         var homePage=loginPage.clickLoginButton();
         var customizedStatementPage=homePage.clickCustomizedStatement();
-       /* try {
-            Thread.sleep(20000);
+        try {
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }*/
+        }
         customizedStatementPage.setAccountNo("123");
         customizedStatementPage.setFromDate("12122013");
         customizedStatementPage.setToDate("12122014");
