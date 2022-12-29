@@ -12,7 +12,44 @@
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <aspectj.version>1.8.10</aspectj.version>
     </properties>
+    <build>
+        <pluginManagement>
+        <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M5</version>
+
+            <configuration>
+                <parallel>tests</parallel>
+                <threadCount>2</threadCount>
+                <suiteXmlFiles>TestNG.xml</suiteXmlFiles>
+                <!--suppress UnresolvedMavenProperty -->
+                <argLine>
+                    -javaagent:${com.browserstack:browserstack-java-sdk:jar}
+                </argLine>
+                <argLine>
+                    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                </argLine>
+                <systemPropertyVariables>
+                    <allure.results.directory>${project.build.directory}/surefire-reports</allure.results.directory>
+                    <allure.link.issue.pattern>https://example.org/browse/{}</allure.link.issue.pattern>
+                    <allure.link.tms.pattern>https://example.org/browse/{}</allure.link.tms.pattern>
+                </systemPropertyVariables>
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.aspectj</groupId>
+                    <artifactId>aspectjweaver</artifactId>
+                    <version>${aspectj.version}</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+        </plugins>
+        </pluginManagement>
+</build>
 
     <dependencies>
         <dependency>
@@ -44,5 +81,6 @@
         </dependency>
 
     </dependencies>
+
 
 </project>
