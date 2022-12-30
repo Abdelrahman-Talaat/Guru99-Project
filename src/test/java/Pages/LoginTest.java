@@ -22,7 +22,7 @@ public class LoginTest extends BaseTest {
     @DataProvider(name = "validData")
     public Object[][] validInputdata(){
        Object[][]data=new Object[1][2];
-       data[0][0]="mngr465178"; data[0][1]="rAsazev1";
+       data[0][0]="mngr465178"; data[0][1]="rAsazev";
        return data;
     }
     @Test(dataProvider = "invalidData")
